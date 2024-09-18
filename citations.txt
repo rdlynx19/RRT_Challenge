@@ -1,3 +1,6 @@
 [1]Python SoftwareFoundation. "3.12.6 Documentation", Docs, Available: https://docs.python.org/3/.
 [2]Matplotlib. "API Reference ", Matplotlib, Available: https://matplotlib.org/stable/api/index.html.
 [3]NumPy. "", Available: https://[1]Matplotlib. "API Reference ", Matplotlib, Available: matplotlib.org/stable/api/index.html.
+[4]P. Bourke, "Point, Line, Plane", Paulbourke, Available: https://paulbourke.net/geometry/pointlineplane/.
+[5]"calculus - shortest distance between a point and a line segment - Mathematics Stack Exchange", Math, Available: https://math.stackexchange.com/questions/2248617/shortest-distance-between-a-point-and-a-line-segment.
+[6]FreeCodeCamp. "Python Return Multiple Values – How to Return a Tuple, List, or Dictionary", Freecodecamp, Available: https://freecodecamp.org/news/python-returns-multiple-values-how-to-return-a-tuple-list-dictionary/.

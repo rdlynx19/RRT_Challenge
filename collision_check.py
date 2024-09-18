@@ -25,11 +25,13 @@ def check_collision(q_new, closest_neighbor,circle_collection,dist_min, flag = 0
                 flag = 1
                 break
 
-
+############ Begin_Citation [4] ##############
             u = (((x3 - closest_neighbor[0])*(q_new[0]-closest_neighbor[0])) + ((y3 - closest_neighbor[1])*(q_new[1]-closest_neighbor[1])))/(dist_min)**2
             n_x = closest_neighbor[0] + u*(q_new[0]-closest_neighbor[0])
             n_y = closest_neighbor[1] + u*(q_new[1]-closest_neighbor[1])
+############ End_Citation [4] ###############
 
+############ Begin_Citation [5] ################
             if(0<=u<=1):
                 normal_dist = math.sqrt((n_x - x3)**2 + (n_y - y3)**2) 
             else:
@@ -37,6 +39,7 @@ def check_collision(q_new, closest_neighbor,circle_collection,dist_min, flag = 0
                 q_c = math.sqrt((x3 - q_new[0])**2 + (y3 - q_new[1])**2)
                 normal_dist = min(closest_c,q_c)
 
+############# End_Citation [5] #################
             if(normal_dist < circ.radius):
                 flag = 1
                 break
@@ -51,8 +54,9 @@ def algo_rrt(q_init, K, D = 100, delta = 2):
         x = random.random()*100
         y = random.random()*100
         r = random.randint(3,8)
-        # cite this line from free code camp
+################ Begin_Citation [6] ###########################
         return Circle((x,y),r, color='black'),x,y
+################ End_Citation [6] ##############################
 
     fig,ax = plt.subplots()
 
@@ -102,26 +106,6 @@ def algo_rrt(q_init, K, D = 100, delta = 2):
         # flag = 0
         ret_flag = check_collision(q_new,closest_neighbor,circle_collection, dist_min)
 
-        # for circ in circle_collection:
-        #     x3 = circ.center[0]
-        #     y3 = circ.center[1]
-
-        #     # checking if either of the points lie inside the circle
-        #     if((q_new[0] - x3)**2 + (q_new[1]-y3)**2 - (circ.radius)**2 < 0):
-        #         flag = 1
-        #         break
-        #     if((closest_neighbor[0]-x3)**2 + (closest_neighbor[1]-y3)**2 - (circ.radius)**2 < 0):
-        #         flag = 1
-        #         break
-
-
-        #     u = (((x3 - closest_neighbor[0])*(q_new[0]-closest_neighbor[0])) + ((y3 - closest_neighbor[1])*(q_new[1]-closest_neighbor[1])))/(dist_min)
-        #     n_x = closest_neighbor[0] + u*(q_new[0]-closest_neighbor[0])
-        #     n_y = closest_neighbor[1] + u*(q_new[1]-closest_neighbor[1])
-
-        #     if(math.sqrt((n_x-x3)**2 + (n_y-y3)**2) < circ.radius):
-        #         flag = 1
-        #         # Add logic for calculating new q_new
         if(ret_flag == 1):
             continue
         
