@@ -26,11 +26,16 @@ def check_collision(q_new, closest_neighbor,circle_collection,dist_min, flag = 0
                 break
 
 
-            u = (((x3 - closest_neighbor[0])*(q_new[0]-closest_neighbor[0])) + ((y3 - closest_neighbor[1])*(q_new[1]-closest_neighbor[1])))/(dist_min)
+            u = (((x3 - closest_neighbor[0])*(q_new[0]-closest_neighbor[0])) + ((y3 - closest_neighbor[1])*(q_new[1]-closest_neighbor[1])))/(dist_min)**2
             n_x = closest_neighbor[0] + u*(q_new[0]-closest_neighbor[0])
             n_y = closest_neighbor[1] + u*(q_new[1]-closest_neighbor[1])
 
-            normal_dist = math.sqrt((n_x - x3)**2 + (n_y - y3)**2) 
+            if(0<=u<=1):
+                normal_dist = math.sqrt((n_x - x3)**2 + (n_y - y3)**2) 
+            else:
+                closest_c = math.sqrt((x3 - closest_neighbor[0])**2 + (y3 - closest_neighbor[1])**2)
+                q_c = math.sqrt((x3 - q_new[0])**2 + (y3 - q_new[1])**2)
+                normal_dist = min(closest_c,q_c)
 
             if(normal_dist < circ.radius):
                 flag = 1
@@ -173,5 +178,5 @@ def algo_rrt(q_init, K, D = 100, delta = 2):
     plt.show()
 
 
-algo_rrt((50,50),1000)
+algo_rrt((50,50),500)
 
