@@ -57,12 +57,23 @@ def algo_rrt(q_init, K, D = 100, delta = 1):
     fig, ax = plt.subplots(figsize = (10,10))
     ax.set_xlim(10,80)
     ax.set_ylim(10,80)
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y") 
     
     line_collection = LineCollection(collection)
-    ax.add_collection(line_collection)
-    for i in range(0,len(tree)):
-        plt.plot(tree[i][0],tree[i][1],'bo')
+
+    initial_line = ax.plot([], [], color='blue', alpha = 0.5, label='Edges')[0]
+    initial_scatter = ax.scatter([],[], color='blue', label='Nodes')
+
+    plt.legend()
+
+    for line in line_collection.get_segments():
+        ax.scatter(line[:,0], line[:,1], color='blue' )
+        ax.plot(line[:,0], line[:,1], color='blue', alpha = 0.5)
+        plt.pause(0.01)
+    
     plt.show()
+    
 
 
 algo_rrt((50,50),500)

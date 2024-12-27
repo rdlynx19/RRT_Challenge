@@ -58,7 +58,15 @@ def algo_rrt(q_init, K, D = 100, delta = 2):
         return Circle((x,y),r, color='black'),x,y
 ################ End_Citation [6] ##############################
 
-    fig,ax = plt.subplots()
+    fig,ax = plt.subplots(figsize=(10,10))
+
+    initial_start = plt.plot([],[],'ro',label = 'Start')
+    initial_goal = plt.plot([],[],'go',label = "Goal")
+    initial_node = ax.scatter([],[], color='blue', label="Nodes" )
+    initial_edge = ax.plot([],[], color='blue', alpha = 0.5, label="Edges")
+    initial_path = plt.plot([],[],'yo', label="Path to Goal")   
+
+    plt.legend()
 
     start = (random.random()*100,random.random()*100)
     end = (random.random()*100, random.random()*100)
@@ -139,12 +147,17 @@ def algo_rrt(q_init, K, D = 100, delta = 2):
         branches = []
     
     line_collection = LineCollection(collection)
-    ax.add_collection(line_collection)
-    for i in range(0,len(tree)):
-        plt.plot(tree[i][0],tree[i][1],'bo')
+
+    # ax.add_collection(line_collection)
+    # for i in range(0,len(tree)):
+    #     plt.plot(tree[i][0],tree[i][1],'bo')
     plt.plot(end[0],end[1],'go')
-    
-    
+
+    for line in line_collection.get_segments():
+
+        ax.scatter(line[:,0], line[:,1], color='blue' )
+        ax.plot(line[:,0], line[:,1], color='blue', alpha = 0.5)
+        plt.pause(0.01)
     
     shortest_path = []
     if end in tree:
@@ -157,7 +170,8 @@ def algo_rrt(q_init, K, D = 100, delta = 2):
                     break
     
         for i in range(0,len(shortest_path)):
-            plt.plot(shortest_path[i][0],shortest_path[i][1],'yo')    
+            plt.plot(shortest_path[i][0],shortest_path[i][1],'yo')   
+            plt.pause(0.01) 
     plt.plot(start[0],start[1],'ro')        
     plt.show()
 
